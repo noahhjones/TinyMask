@@ -44,6 +44,10 @@ public class Door : MonoBehaviour
 
         while (timeElapsed < doorSpeedTime)
         {
+            while (PauseController.IsGamePaused)
+            {
+                yield return null;
+            }
             transform.position = Vector2.Lerp(startPosition, targetPosition, timeElapsed);
             timeElapsed += Time.deltaTime;
             yield return null;
