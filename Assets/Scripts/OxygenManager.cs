@@ -9,6 +9,11 @@ public class OxygenManager : MonoBehaviour
     public OxygenBar oxygenBar;
     private float maxOxygen = 100f;
     private float currentOxygen;
+    private AudioSource audioSource;
+    [SerializeField] AudioClip oxygenDepletedSound;
+    [SerializeField] AudioClip oxygenIncreaseSound;
+    [SerializeField] AudioClip oxygenDecreaseSound;
+
 
     public static OxygenManager Instance;
     void Awake()
@@ -25,6 +30,7 @@ public class OxygenManager : MonoBehaviour
     
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         if (oxygenBar == null)
         {
             Debug.LogError("OxygenBar missing!");
