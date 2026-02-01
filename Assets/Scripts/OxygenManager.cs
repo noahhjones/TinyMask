@@ -43,13 +43,24 @@ public class OxygenManager : MonoBehaviour
     {
         currentOxygen = Math.Min(currentOxygen + amount, maxOxygen);
         oxygenBar.setMeter(currentOxygen);
+        if (audioSource != null && oxygenIncreaseSound != null)
+        {
+            audioSource.PlayOneShot(oxygenIncreaseSound);
+        }
     }
     public void DecreaseOxygen(float amount)
     {
-        if(currentOxygen - amount <= 0f) 
+        if (currentOxygen <= 0f)
         {
-            // Handle out of oxygen scenario
             Debug.Log("Out of Oxygen!");
+            if (audioSource != null && oxygenDepletedSound != null)
+            {
+                audioSource.PlayOneShot(oxygenDepletedSound);
+            }
+            // Kill player and reset
+            // For now, just reload the level
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+            return;
         }
         currentOxygen = Math.Max(currentOxygen - amount, 0f);
         oxygenBar.setMeter(currentOxygen);    
