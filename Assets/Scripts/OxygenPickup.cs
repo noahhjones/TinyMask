@@ -20,6 +20,7 @@ public class OxygenPickup : MonoBehaviour
         //if player collides with cloud, decrease oxygen
         if(collider.gameObject.CompareTag("Player")) {
             OxygenManager.Instance.IncreaseOxygen(oxygenAmount);
+            Destroy(gameObject);
         }
     }
 }
