@@ -253,9 +253,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: 472366209
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac166294e2cee974bbde489cf3e58476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 5
   rb: {fileID: 131731166}
 --- !u!114 &131731170
 MonoBehaviour:
@@ -1703,7 +1703,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -2276,7 +2276,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -256896693
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f86bf86e5f499ec47b3dfb027cc52b53, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2289,35 +2289,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1786578574
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1786578578}
-  - component: {fileID: 1786578577}
-  - component: {fileID: 1786578576}
-  - component: {fileID: 1786578575}
-  m_Layer: 0
-  m_Name: InteractionTest
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1786578575
+--- !u!114 &2063097245 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 6513701229411930806, guid: 15b02735189c66543a28beabde0eca2e, type: 3}
+  m_PrefabInstance: {fileID: 8668611861097837939}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1786578574}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0866911e5a1309041835075cfe2de329, type: 3}
+  m_Script: {fileID: 11500000, guid: daf13b001b18f0f4fa38193c7cfb70ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   oneUse: 0
@@ -2643,7 +2623,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
---- !u!1001 &6754518972371300356
+--- !u!1001 &4329264349297975493
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2

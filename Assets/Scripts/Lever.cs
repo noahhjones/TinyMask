@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Lever : MonoBehaviour, IInteractable
 {
@@ -9,6 +10,8 @@ public class Lever : MonoBehaviour, IInteractable
 
     public Sprite unpulledSprite;
     public Sprite pulledSprite;
+
+    public UnityEvent onPull;
 
     public bool CanInteract()
     {
@@ -28,7 +31,8 @@ public class Lever : MonoBehaviour, IInteractable
     {
         SetPulled(!isPulled);
 
-        //Whatever the lever does
+        //Debug.Log("Pulled");
+        onPull?.Invoke();
     }
 
     public void SetPulled(bool pulled)
