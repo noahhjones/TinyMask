@@ -62,6 +62,7 @@ public class OxygenManager : MonoBehaviour
             return;
         }
         currentOxygen = currentOxygen - amount;
+        audioSource.PlayOneShot(oxygenDecreaseSound);
         if(currentOxygen <= 10f)
         {
             oxygenBar.FlashRed();
