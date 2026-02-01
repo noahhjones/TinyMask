@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class InteractionDetector : MonoBehaviour
 {
     private IInteractable interactableInRange = null; //Closest Interactable
     public GameObject interactionIcon;
+
+    public UnityEvent onInteract;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +21,11 @@ public class InteractionDetector : MonoBehaviour
     {
         if (context.performed)
         {
+            if (!interactableInRange.GetClimbAnim())
+            {
+                onInteract?.Invoke();
+            }
+
             interactableInRange?.Interact();
             if (!interactableInRange.CanInteract())
             {

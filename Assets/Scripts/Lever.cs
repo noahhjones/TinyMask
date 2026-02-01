@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class Lever : MonoBehaviour, IInteractable
 {
+    bool climbAnim = false;
     public bool isPulled { get; private set; }
     [SerializeField] public bool oneUse;
 
@@ -18,6 +19,11 @@ public class Lever : MonoBehaviour, IInteractable
         if(!oneUse) return true;
 
         return !isPulled;
+    }
+
+    public bool GetClimbAnim()
+    {
+        return climbAnim; 
     }
 
     public void Interact()

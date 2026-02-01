@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Ladder : MonoBehaviour, IInteractable
 {
+    bool climbAnim = true;
+
     bool isMoving = false;
     [SerializeField] Transform topPoint;
     [SerializeField] Transform bottomPoint;
@@ -11,6 +13,11 @@ public class Ladder : MonoBehaviour, IInteractable
     public bool CanInteract()
     {
         return !isMoving;
+    }
+
+    public bool GetClimbAnim()
+    {
+        return climbAnim;
     }
 
     public void Interact()
@@ -22,7 +29,10 @@ public class Ladder : MonoBehaviour, IInteractable
 
         PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
         Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
+        Animator playerAnimator = player.GetComponent<Animator>();
         //set velocity to 0 and disable movement
+        playerAnimator.SetBool("IsClimbing", true);
+
         playerMovement.enabled = false;
         playerRb.velocity = Vector2.zero;
         playerRb.Sleep();
@@ -31,13 +41,13 @@ public class Ladder : MonoBehaviour, IInteractable
         Vector3 distToBottom = bottomPoint.position - player.transform.position;
         if(distToTop.magnitude < distToBottom.magnitude)
         {
-            StartCoroutine(MoveLadder(player.transform, topPoint.position, bottomPoint.position));
+            StartCoroutine(MoveLadder(player.transform, playerAnimator, topPoint.position, bottomPoint.position));
         } else
         {
-            StartCoroutine(MoveLadder(player.transform, bottomPoint.position, topPoint.position));
+            StartCoroutine(MoveLadder(player.transform, playerAnimator, bottomPoint.position, topPoint.position));
         }
     }
-    IEnumerator MoveLadder(Transform playerTransform, Vector2 startPosition, Vector2 targetPosition)
+    IEnumerator MoveLadder(Transform playerTransform, Animator playerAnimator, Vector2 startPosition, Vector2 targetPosition)
     {
         isMoving = true;
         playerTransform.position = startPosition;
@@ -51,6 +61,7 @@ public class Ladder : MonoBehaviour, IInteractable
         }
         playerTransform.position = targetPosition;
         isMoving = false;
+        playerAnimator.SetBool("IsClimbing", false);
         playerTransform.GetComponent<Rigidbody2D>().WakeUp();
         playerTransform.GetComponent<PlayerMovement>().enabled = true;
     }

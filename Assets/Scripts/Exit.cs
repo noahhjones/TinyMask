@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class Exit : MonoBehaviour, IInteractable
 {
+    bool climbAnim = true;
+
     public bool CanInteract()
     {
         return true;
+    }
+
+    public bool GetClimbAnim()
+    {
+        return climbAnim;
     }
 
     public void Interact()

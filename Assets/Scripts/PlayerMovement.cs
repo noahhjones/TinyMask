@@ -25,7 +25,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PauseController.IsGamePaused)
+
+        if (PauseController.IsGamePaused || animator.GetBool("IsInteracting"))
         {
             rb.velocity = Vector2.zero;
             animator.SetBool("IsWalking", false);
@@ -50,5 +51,18 @@ public class PlayerMovement : MonoBehaviour
             isFacingRight = !isFacingRight;
             sprite.flipX = !sprite.flipX;
         }
+    }
+
+    public void Interact()
+    {
+        StopAllCoroutines();
+        StartCoroutine(InteractAnimation());
+    }
+
+    IEnumerator InteractAnimation()
+    {
+        animator.SetBool("IsInteracting", true);
+        yield return new WaitForSeconds(0.3f);
+        animator.SetBool("IsInteracting", false);
     }
 }
