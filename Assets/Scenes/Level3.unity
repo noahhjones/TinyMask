@@ -598,7 +598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8817f7d0ccf6824ea9c7c4e590f6e41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingOxygen: 0
+  startingOxygen: 10
   oxygenBar: {fileID: 1802710306}
   oxygenDepletedSound: {fileID: 0}
   oxygenIncreaseSound: {fileID: 0}

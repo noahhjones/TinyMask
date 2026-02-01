@@ -47,4 +47,48 @@ public class OxygenBar : MonoBehaviour
 
         oxygenBar.fillAmount = targetValue / 100f; // ensure it's exact
     }
+
+    private Coroutine flashRoutine;
+    public void FlashRed()
+    {
+        if (flashRoutine == null)
+        {
+            flashRoutine = StartCoroutine(FlashRepeat());
+        }
+    }
+    public void StopFlashing()
+    {
+        if (flashRoutine != null)
+        {
+            StopCoroutine(flashRoutine);
+            flashRoutine = null;
+        }
+        // Reset color to original
+        oxygenBar.color = new Color(0f, 255f, 225f, 255f);
+    }
+    private IEnumerator FlashRepeat()
+    {
+        Color originalColor = new Color(0f, 255f, 225f, 255f);
+        Color flashColor = Color.red;
+        float halfDuration = 0.25f;
+
+        while (true)
+        {
+            float t = 0f;
+            while (t < 1f)
+            {
+                t += Time.deltaTime / halfDuration;
+                oxygenBar.color = Color.Lerp(originalColor, flashColor, t);
+                yield return null;
+            }
+
+            t = 0f;
+            while (t < 1f)
+            {
+                t += Time.deltaTime / halfDuration;
+                oxygenBar.color = Color.Lerp(flashColor, originalColor, t);
+                yield return null;
+            }
+        }
+    }
 }

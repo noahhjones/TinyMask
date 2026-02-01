@@ -38,9 +38,14 @@ public class OxygenManager : MonoBehaviour
         //set current oxygen to starting oxygen
         currentOxygen = startingOxygen;
         oxygenBar.setMeter(startingOxygen);
+        if(currentOxygen <= 10f)
+        {
+            oxygenBar.FlashRed();
+        }
     }
     public void IncreaseOxygen(float amount)
     {
+        oxygenBar.StopFlashing();
         currentOxygen = Math.Min(currentOxygen + amount, maxOxygen);
         oxygenBar.setMeter(currentOxygen);
         if (audioSource != null && oxygenIncreaseSound != null)
@@ -50,19 +55,36 @@ public class OxygenManager : MonoBehaviour
     }
     public void DecreaseOxygen(float amount)
     {
-        if (currentOxygen <= 0f)
+        if (currentOxygen - amount <= 0f)
         {
             Debug.Log("Out of Oxygen!");
-            if (audioSource != null && oxygenDepletedSound != null)
-            {
-                audioSource.PlayOneShot(oxygenDepletedSound);
-            }
-            // Kill player and reset
-            // For now, just reload the level
-            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+            StartCoroutine(OutOfOxygenRoutine());
             return;
         }
-        currentOxygen = Math.Max(currentOxygen - amount, 0f);
+        currentOxygen = currentOxygen - amount;
+        if(currentOxygen <= 10f)
+        {
+            oxygenBar.FlashRed();
+        }
         oxygenBar.setMeter(currentOxygen);    
+    }
+    IEnumerator OutOfOxygenRoutine()
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
+        Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
+        //set velocity to 0 and disable movement
+        playerMovement.enabled = false;
+        playerRb.velocity = Vector2.zero;
+        oxygenBar.setMeter(0f);
+        // Play out of oxygen sound
+        if (audioSource != null && oxygenDepletedSound != null)
+        {
+            audioSource.PlayOneShot(oxygenDepletedSound);
+        }
+        // Wait for sound to finish
+        yield return new WaitForSeconds(1f);
+        // Reload the scene
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }
 }

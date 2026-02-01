@@ -20,8 +20,8 @@ public class Ladder : MonoBehaviour, IInteractable
         GameObject player = GameObject.FindWithTag("Player");
         if(player == null) return;
 
-        PlayerMovement playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
-        Rigidbody2D playerRb = playerMovement.GetComponent<Rigidbody2D>();
+        PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
+        Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
         //set velocity to 0 and disable movement
         playerMovement.enabled = false;
         playerRb.velocity = Vector2.zero;
