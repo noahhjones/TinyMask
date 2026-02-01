@@ -21,6 +21,8 @@ public class InteractionDetector : MonoBehaviour
     {
         if (context.performed)
         {
+            if(interactableInRange == null) return;
+            
             if (!interactableInRange.GetClimbAnim())
             {
                 onInteract?.Invoke();
