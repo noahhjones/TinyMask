@@ -10,6 +10,8 @@ public class Ladder : MonoBehaviour, IInteractable
     [SerializeField] Transform topPoint;
     [SerializeField] Transform bottomPoint;
     [SerializeField] float duration = 2f;
+    [SerializeField] AudioSource audioSource;
+
     public bool CanInteract()
     {
         return !isMoving;
@@ -49,6 +51,7 @@ public class Ladder : MonoBehaviour, IInteractable
     }
     IEnumerator MoveLadder(Transform playerTransform, Animator playerAnimator, Vector2 startPosition, Vector2 targetPosition)
     {
+        audioSource.Play();
         isMoving = true;
         playerTransform.position = startPosition;
         float elapsedTime = 0f;
@@ -64,5 +67,6 @@ public class Ladder : MonoBehaviour, IInteractable
         playerAnimator.SetBool("IsClimbing", false);
         playerTransform.GetComponent<Rigidbody2D>().WakeUp();
         playerTransform.GetComponent<PlayerMovement>().enabled = true;
+        audioSource.Stop();
     }
 }

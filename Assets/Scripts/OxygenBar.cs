@@ -11,6 +11,7 @@ public class OxygenBar : MonoBehaviour
     [SerializeField] Image oxygenBar;
 
     private Coroutine FillRoutine;
+    [SerializeField] AudioSource audioSource;
 
     public void setMeter(float amt)
     {
@@ -51,6 +52,7 @@ public class OxygenBar : MonoBehaviour
     private Coroutine flashRoutine;
     public void FlashRed()
     {
+        audioSource.Play();
         if (flashRoutine == null)
         {
             flashRoutine = StartCoroutine(FlashRepeat());
@@ -58,6 +60,7 @@ public class OxygenBar : MonoBehaviour
     }
     public void StopFlashing()
     {
+        audioSource.Stop();
         if (flashRoutine != null)
         {
             StopCoroutine(flashRoutine);
