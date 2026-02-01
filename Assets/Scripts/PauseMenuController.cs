@@ -25,4 +25,10 @@ public class MenuController : MonoBehaviour
             PauseController.SetPause(menuCanvas.activeSelf);
         }
     }
+
+    public void GoToTitle()
+    {
+        PauseController.SetPause(false);
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(0);
+    }
 }
