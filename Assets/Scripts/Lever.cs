@@ -31,7 +31,7 @@ public class Lever : MonoBehaviour, IInteractable
     {
         SetPulled(!isPulled);
 
-        Debug.Log("Pulled");
+        //Debug.Log("Pulled");
         onPull?.Invoke();
     }
 
